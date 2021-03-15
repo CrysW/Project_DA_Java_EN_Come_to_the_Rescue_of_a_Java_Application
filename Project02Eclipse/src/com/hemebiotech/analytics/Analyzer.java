@@ -6,6 +6,7 @@ import java.util.Map;
 /**
  * Read the symptoms from a file
  * Count the symptoms
+ * Write the symptoms to a file
  */
 
 public class Analyzer {
@@ -13,6 +14,7 @@ public class Analyzer {
     // Attribut(s)
     private ISymptomReader reader = new ReadSymptomDataFromFile();
     private ISymptomCounter counter = new SymptomCounter();
+    private ISymptomWriter writer = new WriteSymptomDataToFile();
 
     // Construteur(s)
     public Analyzer() {
@@ -24,6 +26,7 @@ public class Analyzer {
     /**
      * Read the symptoms
      * Count the symptoms
+     * Write the symptoms
      */
 
     public void analyse() {
@@ -31,6 +34,8 @@ public class Analyzer {
         List<String> r = reader.getSymptoms();
 
         Map<String,Integer> c = counter.counterList(r);
+
+        writer.writeList(c);
 
     }
 }
